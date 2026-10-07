@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="مجموعة الخطاب لتوريد الأرز للفنادق والمطاعم والشركات. أسعار محدثة مباشرة من نظام المخزون والتواصل عبر ماسنجر." />
+  <title>مجموعة الخطاب | توريد الأرز للشركات والفنادق</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>توريد مرن للفنادق والمطاعم والشركات وتجار الجملة</span>
+      <span class="live-dot"><i></i> الأسعار مرتبطة بنظام المخزون</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="مجموعة الخطاب">
+        <span class="brand-mark">خ</span>
+        <span>
+          <strong>مجموعة <em>الخطاب</em></strong>
+          <small>لتجارة وتوريد الأرز</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="#catalog">المنتجات</a>
+        <a href="#why-us">طريقة الشراء</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+      <button class="btn btn-primary btn-small" data-open-messenger>
+        <span>ماسنجر المبيعات</span>
+        <span aria-hidden="true">↗</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-grid container">
+        <div class="hero-copy">
+          <span class="eyebrow">توريد أرز للقطاع التجاري</span>
+          <h1>اختار الصنف المناسب وشوف <span>سعره الحالي</span> من المخزون مباشرة.</h1>
+          <p>كتالوج بسيط وواضح للفنادق والمطاعم والشركات. تقدر تعرف السعر، تختار الكمية، وتحول التفاصيل مباشرة لمساعد المبيعات على ماسنجر.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#catalog">شوف المنتجات والأسعار</a>
+            <button class="btn btn-secondary" data-open-messenger>اسأل على ماسنجر</button>
+          </div>
+          <div class="hero-points">
+            <span>✓ أسعار محدثة من النظام</span>
+            <span>✓ كميات مرنة بدون حد أدنى ثابت</span>
+            <span>✓ تأكيد الطلب من فريق المبيعات</span>
+          </div>
+        </div>
+
+        <div class="hero-panel" aria-label="ملخص الخدمة">
+          <div class="grain-art" aria-hidden="true">
+            <div class="grain grain-1"></div><div class="grain grain-2"></div><div class="grain grain-3"></div>
+            <div class="grain grain-4"></div><div class="grain grain-5"></div><div class="grain grain-6"></div>
+          </div>
+          <div class="hero-panel-card">
+            <span class="status-chip"><i></i> كتالوج مباشر</span>
+            <h2>السعر بيتحدث من Google Sheets عبر n8n</h2>
+            <p>الموقع للقراءة فقط؛ مفيش أي مفاتيح أو صلاحيات كتابة ظاهرة للعميل.</p>
+            <div class="mini-stats">
+              <div><strong id="heroProductCount">—</strong><small>أصناف متاحة للعرض</small></div>
+              <div><strong id="heroUpdated">—</strong><small>آخر تحديث</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="section catalog-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">كتالوج التوريد</span>
+            <h2>الأصناف والأسعار الحالية</h2>
+            <p>السعر الظاهر هو سعر الكيلو من النظام، والتكلفة النهائية يتم تأكيدها مع فريق المبيعات.</p>
+          </div>
+          <div class="catalog-meta">
+            <span id="catalogState" class="catalog-state">جاري تحميل الأسعار...</span>
+            <button id="refreshCatalog" class="btn btn-ghost" type="button">تحديث الأسعار</button>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="فلترة المنتجات">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="productSearch" type="search" placeholder="دور باسم الصنف..." autocomplete="off" />
+          </label>
+          <div id="grainFilters" class="filter-pills"></div>
+        </div>
+
+        <div id="catalogGrid" class="product-grid" aria-live="polite"></div>
+        <div id="catalogError" class="empty-state hidden">
+          <h3>تعذر تحميل الأسعار حالياً</h3>
+          <p>تقدر تفتح ماسنجر وتسأل فريق المبيعات مباشرة لحد ما الاتصال يرجع.</p>
+          <button class="btn btn-primary" data-open-messenger>فتح ماسنجر</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="section process-section">
+      <div class="container">
+        <div class="section-head centered">
+          <span class="eyebrow">من الموقع للطلب</span>
+          <h2>الطلب في 3 خطوات واضحة</h2>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><span>01</span><h3>اختار الصنف</h3><p>راجع نوع الحبة ونسبة الكسر والسعر الحالي.</p></article>
+          <article class="process-card"><span>02</span><h3>حدد الكمية</h3><p>بالكيلو أو بالطن، والموقع يحسب لك التكلفة التقريبية.</p></article>
+          <article class="process-card"><span>03</span><h3>كمل على ماسنجر</h3><p>بنجهز رسالة الطلب وتفتح الشات مباشرة لإرسالها لمساعد المبيعات.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-card">
+        <div>
+          <span class="eyebrow">عايز مساعدة في اختيار الصنف؟</span>
+          <h2>كلم المبيعات مباشرة</h2>
+          <p>لو مش عارف أنهي صنف أنسب لاستخدامك، ابعت طبيعة النشاط والكمية المتوقعة على ماسنجر.</p>
+        </div>
+        <div class="contact-actions">
+          <button class="btn btn-primary" data-open-messenger>فتح ماسنجر</button>
+          <a class="btn btn-secondary" id="phoneLink" href="#">اتصال بالمبيعات</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2026 مجموعة الخطاب لتجارة وتوريد الأرز</span>
+      <span>الأسعار المعروضة قابلة للتحديث ويتم تأكيد تفاصيل الطلب مع فريق المبيعات.</span>
+    </div>
+  </footer>
+
+  <div id="orderModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="إغلاق">×</button>
+      <span class="eyebrow">تجهيز رسالة ماسنجر</span>
+      <h2 id="modalTitle">اطلب عرض سعر</h2>
+      <p id="modalProductName" class="modal-product">—</p>
+
+      <form id="orderForm" novalidate>
+        <div class="form-row two-cols">
+          <label>اسم العميل / الشركة<input id="customerName" type="text" placeholder="مثال: مطعم النيل" /></label>
+          <label>رقم الموبايل<input id="customerPhone" type="tel" inputmode="tel" placeholder="01xxxxxxxxx" /></label>
+        </div>
+        <div class="form-row two-cols">
+          <label>الكمية<input id="orderQty" type="number" min="0.01" step="0.01" value="100" required /></label>
+          <label>الوحدة<select id="orderUnit"><option value="كجم">كجم</option><option value="طن">طن</option></select></label>
+        </div>
+        <label class="full-label">نوع الطلب<select id="orderType"><option value="quote">استفسار وعرض سعر</option><option value="order">طلب شراء مبدئي</option></select></label>
+        <label class="full-label">ملاحظة إضافية<textarea id="orderNote" rows="3" placeholder="اختياري"></textarea></label>
+
+        <div class="estimate-box">
+          <span>التكلفة التقريبية</span>
+          <strong id="estimateValue">—</strong>
+          <small>حسب السعر الحالي الظاهر في الموقع</small>
+        </div>
+        <p id="formError" class="form-error hidden"></p>
+        <div class="modal-actions">
+          <button class="btn btn-primary" type="submit">نسخ التفاصيل وفتح ماسنجر</button>
+          <button class="btn btn-secondary" type="button" data-close-modal>إلغاء</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
